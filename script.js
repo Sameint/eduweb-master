@@ -60,22 +60,23 @@ const activeElem = function () {
   }
 }
 
+var img = document.getElementById('img');
 
+var slides=['https://edugorilla.com/wp-content/uploads/2019/01/sharda-ias-download.jpg','https://i.ytimg.com/vi/3_UBAgAIYMc/maxresdefault.jpg','https://directory.edugorilla.com/wp-content/uploads/sites/6/2016/01/18739785_839007536256355_5574924354330237778_n.jpg'];
+
+var Start=0;
+
+function slider(){
+    if(Start<slides.length){
+        Start=Start+1;
+    }
+    else{
+        Start=1;
+    }
+    console.log(img);
+    img.innerHTML = "<img src="+slides[Start-1]+">";
+   
+}
+setInterval(slider,2000);
 
 addEventOnElem(window, "scroll", activeElem);
-var images = ["image1.jpg", "image2.jpg", "image3.jpg"];
-    
-var currentImageIndex = 0;
-var imageElement = document.getElementById("image");
-
-// Function to change the image
-function changeImage() {
-  currentImageIndex = (currentImageIndex + 1) % images.length;
-  imageElement.src = images[currentImageIndex];
-}
-
-// Time interval in milliseconds (e.g., 5 seconds)
-var interval = 5000;
-
-// Start the image rotation
-setInterval(changeImage, interval);
