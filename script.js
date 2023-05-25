@@ -1,51 +1,28 @@
 'use strict';
-var slider = document.getElementById("slider");
-var sliderWidth = slider.offsetWidth;
-var slideList = document.getElementById("slideWrap");
-var count = 1;
-var items = slideList.querySelectorAll("li").length;
-var prev = document.getElementById("prev");
-var next = document.getElementById("next");
 
-window.addEventListener('resize', function() {
-    sliderWidth = slider.offsetWidth;
-});
+var slideIndex = 0;
+    var slides = document.querySelectorAll("#slider img");
 
-function nextSlide(){
-    if(count < items) {
-        slideList.style.left = "-" + count * sliderWidth + "px";
-        count++;
+    function showSlide() {
+      // Hide all slides
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
       }
-      else if(count = items) {
-        slideList.style.left = "0px";
-        count = 1;
-      }
-}
 
-function prevSlide(){
-    if(count > 1) {
-        count = count - 2;
-        slideList.style.left = "-" + count * sliderWidth + "px";
-        count++;
-      }
-      else if(count = 1) {
-        count = items - 1;
-        slideList.style.left = "-" + count * sliderWidth + "px";
-        count++;
-      }
-}
+      // Increment slide index
+      slideIndex++;
 
-next.addEventListener("click", function() {
-    nextSlide();
-});
-  
-prev.addEventListener("click", function() {
-    prevSlide();
-});
+      // Reset slide index if it exceeds the number of slides
+      if (slideIndex >= slides.length) {
+        slideIndex = 0;
+      }
 
-setInterval(function() {
-    nextSlide()
-}, 5000);
+      // Display the current slide
+      slides[slideIndex].style.display = "block";
+    }
+
+    // Call the showSlide function every 3 seconds
+    setInterval(showSlide, 3000);
 
 /**
  * add event on element
